@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArrayOperation
+namespace AVLTreeOperation
 {
-    public class Class1
+    public class AVLTreeOperation
     {
     }
 }
