@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileExt\FileOperation.cs" />
     <Compile Include="Operation\ArrayOperation.cs" />
     <Compile Include="Operation\AVLTreeOperation.cs" />
     <Compile Include="Operation\BidirectionaListOperation.cs" />

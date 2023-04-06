@@ -1,4 +1,5 @@
-﻿using StudyOfTheEffectivenessOperations.Operation.ArrayOperation;
+﻿using StudyOfTheEffectivenessOperations.FileExt;
+using StudyOfTheEffectivenessOperations.Operation.ArrayOperation;
 using StudyOfTheEffectivenessOperations.Operation.AVLTreeOperation;
 using StudyOfTheEffectivenessOperations.Operation.BidirectionaListOperation;
 using StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation;
@@ -16,11 +17,12 @@ namespace StudyOfTheEffectivenessOperations
     {
         static void Main(string[] args)
         {
+            FileOperation file = new FileOperation();
             ArrayOperation arrayOp = new ArrayOperation();
             BidirectionaListOperation listOp = new BidirectionaListOperation();
             BinaryTreeOperation binaryTreeOp = new BinaryTreeOperation();
             BlackRedTreeOperation blackRedTreeOp = new BlackRedTreeOperation();
-            AVLTreeOperation aVLTreeOperation = new AVLTreeOperation();
+            AVLTreeOperation AVLTreeOp = new AVLTreeOperation();
         }
     }
 }
