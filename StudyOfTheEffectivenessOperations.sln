@@ -5,16 +5,6 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyOfTheEffectivenessOperations", "StudyOfTheEffectivenessOperations\StudyOfTheEffectivenessOperations.csproj", "{3BEEA873-BFDA-4FA4-BEC4-85AEDE8942BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayOperation", "ArrayOperation\ArrayOperation.csproj", "{DECE06BF-5102-430F-9011-F2B424F04716}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BidirectionaListOperation", "BidirectionaListOperation\BidirectionaListOperation.csproj", "{FB39624D-2567-46BA-BCFD-4F9838D2D795}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryTreeOperation", "BinaryTree\BinaryTreeOperation.csproj", "{35D23A21-A020-4656-A9E5-3508C84D1FA7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackRedTreeOperation", "BlackRedTreeOperation\BlackRedTreeOperation.csproj", "{56E948E4-66FD-4D86-A4E5-A55306E4C3C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVLTreeOperation", "AVLTree\AVLTreeOperation.csproj", "{C53193FA-999F-452E-A361-00A97D540781}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,26 +15,6 @@ Global
 		{3BEEA873-BFDA-4FA4-BEC4-85AEDE8942BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BEEA873-BFDA-4FA4-BEC4-85AEDE8942BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BEEA873-BFDA-4FA4-BEC4-85AEDE8942BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DECE06BF-5102-430F-9011-F2B424F04716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DECE06BF-5102-430F-9011-F2B424F04716}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DECE06BF-5102-430F-9011-F2B424F04716}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DECE06BF-5102-430F-9011-F2B424F04716}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB39624D-2567-46BA-BCFD-4F9838D2D795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB39624D-2567-46BA-BCFD-4F9838D2D795}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB39624D-2567-46BA-BCFD-4F9838D2D795}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB39624D-2567-46BA-BCFD-4F9838D2D795}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35D23A21-A020-4656-A9E5-3508C84D1FA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35D23A21-A020-4656-A9E5-3508C84D1FA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35D23A21-A020-4656-A9E5-3508C84D1FA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35D23A21-A020-4656-A9E5-3508C84D1FA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56E948E4-66FD-4D86-A4E5-A55306E4C3C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56E948E4-66FD-4D86-A4E5-A55306E4C3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56E948E4-66FD-4D86-A4E5-A55306E4C3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56E948E4-66FD-4D86-A4E5-A55306E4C3C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C53193FA-999F-452E-A361-00A97D540781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C53193FA-999F-452E-A361-00A97D540781}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C53193FA-999F-452E-A361-00A97D540781}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C53193FA-999F-452E-A361-00A97D540781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

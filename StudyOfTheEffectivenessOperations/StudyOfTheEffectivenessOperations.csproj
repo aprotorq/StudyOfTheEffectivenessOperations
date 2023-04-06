@@ -43,6 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operation\ArrayOperation.cs" />
+    <Compile Include="Operation\AVLTreeOperation.cs" />
+    <Compile Include="Operation\BidirectionaListOperation.cs" />
+    <Compile Include="Operation\BinaryTreeOperation.cs" />
+    <Compile Include="Operation\BlackRedTreeOperation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
