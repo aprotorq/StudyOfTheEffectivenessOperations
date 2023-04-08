@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudyOfTheEffectivenessOperations
 {
-    internal static class Menu
+    internal static class MainMenu
     {
         public static void ShowMenu()
         {

@@ -126,7 +126,7 @@ namespace StudyOfTheEffectivenessOperations.FileExt
                     
                 }
                 Console.WriteLine($"Dane zostaly wczytane z: {_filePath}");
-                Menu.ShowMenu();
+                MainMenu.ShowMenu();
             }
             
         }

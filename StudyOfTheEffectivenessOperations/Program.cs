@@ -22,7 +22,7 @@ namespace StudyOfTheEffectivenessOperations
         static void Main(string[] args)
         {
             FileOperation.Create();
-            Menu.ShowMenu();
+            MainMenu.ShowMenu();
             //FileOperation file = new FileOperation();
             //Arr = file.ArrayNumbers;
            
