@@ -15,14 +15,30 @@ namespace StudyOfTheEffectivenessOperations
 {
     public class Program
     {
+        //private static int[] arr;
+
+        //public static int[] Arr { get => arr; set => arr = value; }
+
         static void Main(string[] args)
         {
-            FileOperation file = new FileOperation();
-            ArrayOperation arrayOp = new ArrayOperation();
-            BidirectionaListOperation listOp = new BidirectionaListOperation();
-            BinaryTreeOperation binaryTreeOp = new BinaryTreeOperation();
-            BlackRedTreeOperation blackRedTreeOp = new BlackRedTreeOperation();
-            AVLTreeOperation AVLTreeOp = new AVLTreeOperation();
-        }
+            FileOperation.Create();
+            Menu.ShowMenu();
+            //FileOperation file = new FileOperation();
+            //Arr = file.ArrayNumbers;
+           
+            
+           // 
+           //ArrayOperation arrayOp = new ArrayOperation();
+           //BidirectionaListOperation listOp = new BidirectionaListOperation();
+           //BinaryTreeOperation binaryTreeOp = new BinaryTreeOperation();
+
+            
+            
+
+            
+            //    BlackRedTreeOperation blackRedTreeOp = new BlackRedTreeOperation();
+            //    AVLTreeOperation AVLTreeOp = new AVLTreeOperation();
+            }
+        
     }
 }
