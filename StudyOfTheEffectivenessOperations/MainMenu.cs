@@ -1,4 +1,6 @@
-﻿using StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation;
+﻿using StudyOfTheEffectivenessOperations.Operation;
+using StudyOfTheEffectivenessOperations.Operation.ArrayOperation;
+using StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,24 +25,30 @@ namespace StudyOfTheEffectivenessOperations
             switch (key)
             {
                 case "1":
-                    Console.Write("Wybrana została Tablica\r\n");
-                    //ArrayOperation arrayOp = new ArrayOperation();
+                    ColorizeString("Wybrana została Tablica\r\n");
+                    ArrayOperation arrayOp = new ArrayOperation();
                     break;
                 case "2":
-                    Console.Write("Wybrana została Lista dwukierunkowa\r\n");
+                    ColorizeString("Wybrana została Lista dwukierunkowa\r\n");
                     //BidirectionaListOperation listOp = new BidirectionaListOperation();
                     break;
                 case "3":
-                    Console.Write("Wybrany został Kopiec binarny\r\n");
-                    BinaryTreeOperation tree = new BinaryTreeOperation();
+                    ColorizeString("Wybrany został Kopiec binarny\r\n");
+                    BinaryHeapWithMaxOperation tree = new BinaryHeapWithMaxOperation();
                     break;
                 case "4":
-                    Console.Write("Wybrane zostało Drzewo czerwono-czarne\r\n");
+                    ColorizeString("Wybrane zostało Drzewo czerwono-czarne\r\n");
                     //BlackRedTreeOperation blackRedTreeOp = new BlackRedTreeOperation();
                     break;
                 default: ShowMenu();
                     break;
             }
+        }
+        public static void ColorizeString(string Text)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(Text);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

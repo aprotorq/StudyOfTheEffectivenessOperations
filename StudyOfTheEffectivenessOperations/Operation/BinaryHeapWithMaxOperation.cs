@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
 {
-    public class BinaryTreeOperation
+    public class BinaryHeapWithMaxOperation
     {
         private int[] _array;
         private int[] heap;
         private int size;
 
-        public BinaryTreeOperation()
+        public BinaryHeapWithMaxOperation()
         {
             _array = FileExt.FileOperation.ArrayNumbers;
             heap = new int[_array.Length];
@@ -55,7 +55,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
                     Remove(Int32.Parse(Console.ReadLine()));
                     break;
                 case "5":
-                    Print();
+                    PrintTree();
                     break;
                 case "6":
                     MainMenu.ShowMenu();
@@ -75,7 +75,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
                 {
                     AddElement(_array[i]);
                 }
-                Print();
+                PrintTree();
             }
         }
 
@@ -193,74 +193,161 @@ namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
             StertaDown(index);
             StertaUp(index);
         }
+        //public void PrintTree()
+        //{
+        //    if (size == 0)
+        //    {
+        //        Console.WriteLine("Heap is empty");
+        //        return;
+        //    }
 
-        public void Print()
+        //    int levels = (int)Math.Ceiling(Math.Log(size, 2));
+        //    int currentIndex = 0;
+
+        //    for (int i = 0; i < levels; i++)
+        //    {
+        //        int nodesInLevel = (int)Math.Pow(2, i);
+        //        int spacesBetweenNodes = (int)Math.Pow(2, levels - i) - 1;
+        //        int spacesBeforeFirstNode = spacesBetweenNodes / 2;
+
+        //        Console.Write(new string(' ', spacesBeforeFirstNode));
+
+        //        for (int j = 0; j < nodesInLevel && currentIndex < size; j++)
+        //        {
+        //            Console.Write(heap[currentIndex]);
+        //            int spacesAfterNode = spacesBetweenNodes - spacesBeforeFirstNode;
+
+        //            Console.Write(new string(' ', spacesAfterNode));
+        //            currentIndex++;
+        //        }
+
+        //        Console.WriteLine();
+        //    }
+        //}
+        public void PrintTree()
         {
-            for (int i = 0; i < size; i++)
+            if (size == 0)
             {
-                int height = (int)Math.Floor(Math.Log(i + 1, 2));
-                int spaceCount = (1 << (height + 1)) - 2;
+                Console.WriteLine("Heap is empty");
+                return;
+            }
 
-                // print spaces before current node
-                Console.Write(new string(' ', spaceCount));
+            int levels = (int)Math.Ceiling(Math.Log(size, 2));
+            int currentIndex = 0;
 
-                // print current node
-                Console.Write(heap[i]);
+            for (int i = 0; i < levels; i++)
+            {
+                int nodesInLevel = (int)Math.Pow(2, i);
+                int spacesBetweenNodes = (int)Math.Pow(2, levels - i) - 1;
+                int spacesBeforeFirstNode = spacesBetweenNodes / 2;
 
-                // print spaces after current node
-                Console.Write(new string(' ', spaceCount));
+                Console.Write(new string(' ', spacesBeforeFirstNode));
 
-                // if current node is not root
-                if (i > 0)
+                for (int j = 0; j < nodesInLevel && currentIndex < size; j++)
                 {
-                    // determine if current node is left or right child of parent
-                    bool isLeftChild = (i - 1) % 2 == 0;
-                    int parentIndex = (i - 1) / 2;
+                    Console.Write(heap[currentIndex]);
 
-                    // print arrows to parent
-                    if (isLeftChild)
+                    int spacesAfterNode = spacesBetweenNodes - spacesBeforeFirstNode;
+                    Console.Write(new string(' ', spacesAfterNode));
+
+                    int leftChildIndex = GetLeftChildIndex(currentIndex);
+                    int rightChildIndex = GetRightChildIndex(currentIndex);
+
+                    if (leftChildIndex < size)
                     {
-                        Console.Write(" /");
-                        Console.Write(new string(' ', spaceCount - 1));
+                        Console.Write("/");
                     }
-                    else
+                    if (rightChildIndex < size)
                     {
-                        Console.Write(new string(' ', spaceCount));
                         Console.Write("\\");
                     }
 
-                    // print spaces between parent and current node's sibling
-                    int siblingIndex = isLeftChild ? i : i - 2;
-                    int siblingHeight = (int)Math.Floor(Math.Log(siblingIndex + 1, 2));
-                    int siblingSpaceCount = (1 << (siblingHeight + 1)) - 2;
-                    Console.Write(new string(' ', siblingSpaceCount));
+                    currentIndex++;
+                }
 
-                    // if current node is right child and its sibling is last node in current level, move to next line
-                    if (!isLeftChild && siblingIndex == (1 << (siblingHeight + 1)) - 2)
-                    {
-                        Console.WriteLine();
-                    }
-                }
-                else
-                {
-                    Console.WriteLine();
-                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
-            //for (int i = 0; i < size; i++)
-            //{
-            //    int height = (int)Math.Floor(Math.Log(i + 1, 2));
-            //    Console.Write(new string(' ', (1 << (height + 1)) - 2));
-            //    Console.Write(heap[i]);
-            //    Console.Write(new string(' ', (1 << (height + 1)) - 2));
-            //    if ((1 << (height + 1)) - 1 == i + 1)
-            //    {
-            //        Console.WriteLine();
-            //    }
-            //}
-            //Console.WriteLine();
             Menu();
         }
+        private int GetLeftChildIndex(int index)
+        {
+            return 2 * index + 1;
+        }
+
+        private int GetRightChildIndex(int index)
+        {
+            return 2 * index + 2;
+        }
+
+
+
+        //public void Print()
+        //{
+        //    for (int i = 0; i < size; i++)
+        //    {
+        //        int height = (int)Math.Floor(Math.Log(i + 1, 2));
+        //        int spaceCount = (1 << (height + 1)) - 2;
+
+        //        // print spaces before current node
+        //        Console.Write(new string(' ', spaceCount));
+
+        //        // print current node
+        //        Console.Write(heap[i]);
+
+        //        // print spaces after current node
+        //        Console.Write(new string(' ', spaceCount));
+
+        //        // if current node is not root
+        //        if (i > 0)
+        //        {
+        //            // determine if current node is left or right child of parent
+        //            bool isLeftChild = (i - 1) % 2 == 0;
+        //            int parentIndex = (i - 1) / 2;
+
+        //            // print arrows to parent
+        //            if (isLeftChild)
+        //            {
+        //                Console.Write(" /");
+        //                Console.Write(new string(' ', spaceCount - 1));
+        //            }
+        //            else
+        //            {
+        //                Console.Write(new string(' ', spaceCount));
+        //                Console.Write("\\");
+        //            }
+
+        //            // print spaces between parent and current node's sibling
+        //            int siblingIndex = isLeftChild ? i : i - 2;
+        //            int siblingHeight = (int)Math.Floor(Math.Log(siblingIndex + 1, 2));
+        //            int siblingSpaceCount = (1 << (siblingHeight + 1)) - 2;
+        //            Console.Write(new string(' ', siblingSpaceCount));
+
+        //            // if current node is right child and its sibling is last node in current level, move to next line
+        //            if (!isLeftChild && siblingIndex == (1 << (siblingHeight + 1)) - 2)
+        //            {
+        //                Console.WriteLine();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine();
+        //        }
+        //    }
+        //    Console.WriteLine();
+        //    //for (int i = 0; i < size; i++)
+        //    //{
+        //    //    int height = (int)Math.Floor(Math.Log(i + 1, 2));
+        //    //    Console.Write(new string(' ', (1 << (height + 1)) - 2));
+        //    //    Console.Write(heap[i]);
+        //    //    Console.Write(new string(' ', (1 << (height + 1)) - 2));
+        //    //    if ((1 << (height + 1)) - 1 == i + 1)
+        //    //    {
+        //    //        Console.WriteLine();
+        //    //    }
+        //    //}
+        //    //Console.WriteLine();
+        //    Menu();
+        //}
         //public void Run()
         //{
         //    Console.WriteLine($"\r\nWpisz 'T' by uruchomić algorytm budowania drzewa na wczytanych {_array.Length} danych");

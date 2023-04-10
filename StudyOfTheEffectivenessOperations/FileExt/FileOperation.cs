@@ -14,12 +14,13 @@ namespace StudyOfTheEffectivenessOperations.FileExt
     {
         private static string _filePath;
         private static FileInfo _fileInfo;
-        private static int _numberOfElements;
+        private static bool _manul;
         private static int[] array;
 
         public static int[] ArrayNumbers { get => array; set => array = value; }
+        public static bool Manul { get => _manul; set => _manul = value; }
 
-       
+
         /// <summary>
         /// Tworze nowego pliku
         /// </summary>
