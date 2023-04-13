@@ -1,44 +1,26 @@
-﻿using StudyOfTheEffectivenessOperations.FileExt;
-using StudyOfTheEffectivenessOperations.Operation.ArrayOperation;
-using StudyOfTheEffectivenessOperations.Operation.AVLTreeOperation;
-using StudyOfTheEffectivenessOperations.Operation.BidirectionaListOperation;
-using StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation;
-using StudyOfTheEffectivenessOperations.Operation.BlackRedTreeOperation;
+﻿using StudyOfTheEffectivenessOperations.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudyOfTheEffectivenessOperations
 {
     public class Program
     {
-        //private static int[] arr;
+         private int numberCount;
+         private int numberCountToRemove;
 
-        //public static int[] Arr { get => arr; set => arr = value; }
+         public int NumberCount { get => numberCount; set => numberCount = value; }
+         public int NumberCountToRemove { get => numberCountToRemove; set => numberCountToRemove = value; }
 
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Ditrich Marcin i Proniewicz Andrzej\r\n");
+            Console.WriteLine("Temat zadania: Badanie efektywności operacji na danych w podstawowych strukturach danych\r\n");
+            Console.ForegroundColor = ConsoleColor.White;
             FileOperation.Create();
             MainMenu.ShowMenu();
-            //FileOperation file = new FileOperation();
-            //Arr = file.ArrayNumbers;
-           
-            
-           // 
-           //ArrayOperation arrayOp = new ArrayOperation();
-           //BidirectionaListOperation listOp = new BidirectionaListOperation();
-           //BinaryTreeOperation binaryTreeOp = new BinaryTreeOperation();
-
-            
-            
-
-            
-            //    BlackRedTreeOperation blackRedTreeOp = new BlackRedTreeOperation();
-            //    AVLTreeOperation AVLTreeOp = new AVLTreeOperation();
-            }
+          
+        }
         
     }
 }

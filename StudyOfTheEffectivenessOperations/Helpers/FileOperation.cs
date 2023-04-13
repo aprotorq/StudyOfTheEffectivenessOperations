@@ -1,24 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace StudyOfTheEffectivenessOperations.FileExt
+namespace StudyOfTheEffectivenessOperations.Helpers
 {
     internal static class FileOperation
     {
         private static string _filePath;
         private static FileInfo _fileInfo;
-        private static bool _manul;
-        private static int[] array;
-
-        public static int[] ArrayNumbers { get => array; set => array = value; }
-        public static bool Manul { get => _manul; set => _manul = value; }
+        private static bool _manual;
 
 
         /// <summary>
@@ -26,12 +16,27 @@ namespace StudyOfTheEffectivenessOperations.FileExt
         /// </summary>
         public static void Create()
         {
+            string fileName = string.Concat("\\liczby.txt");
             //pobranie domyslnej ściezki do ppliku z danymi z pulpicie
-            _filePath = String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "\\liczby.txt");
+            _filePath = String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
             //pobranie informacji o pliku
             _fileInfo = new FileInfo(_filePath);
             //sprawdzanie czy dany plik istnieje i ruchamianie operacji na nim
-            Console.WriteLine("Utworzyć nowy zestaw danych? (T) utowrzyć/ (N) wczytać istniejący");
+            Console.WriteLine($"Każda kolekcja przyjmuje zestaw poczatkowych danych wielkości {VariablesManager.DefaultQuantityBeforeAddOperation} a dane z pliku będą dodawane do danej kolekcji w trakcie eksperymentów.\r\n");
+            Console.WriteLine("Czy chcesz zmienić początkowy zestaw danych? (T) tak, każda inna litera oznacza -NIE\r\n");
+            if (Console.ReadKey().Key == ConsoleKey.T)
+            {
+                int count;
+                Console.WriteLine("\r\nPodaj liczę pocżatkowych danych");
+
+                string consoleInput = Console.ReadLine();
+                bool success = Int32.TryParse(consoleInput, out count);
+                if (success)
+                {
+                    VariablesManager.DefaultQuantityBeforeAddOperation = count;
+                }
+            }
+            Console.WriteLine("\r\nUtworzyć nowy zestaw danych? (T) utworzyć/ (N) wczytać istniejący z pliku ");
             string key = Console.ReadLine().ToUpper();
             Read(key);
             
@@ -69,40 +74,41 @@ namespace StudyOfTheEffectivenessOperations.FileExt
         {
             if(key.Equals("T"))
             {
-                Console.Write(Environment.NewLine+"Podaj sugerowaną ilość"+ Environment.NewLine );
+                VariablesManager.IsManual = true;
+                Console.Write(Environment.NewLine+"Podaj sugerowaną ilość elementów"+ Environment.NewLine );
                 int count;
-                    string consoleInput = Console.ReadLine();
+                string consoleInput = Console.ReadLine();
                 bool success = Int32.TryParse(consoleInput, out count);
                 if (success)
                 {
+                    VariablesManager.NumberCount= count;
                     File.Delete(_filePath);
                     AddToFile(count);
                     var lines = File.ReadLines(_filePath);
-                    //Console.WriteLine(Environment.NewLine);
 
                     foreach (var line in lines)
                     {
-                        //Console.WriteLine($"{line}");
 
                         if (line.Contains(";"))
                         {
-                            ArrayNumbers = line.Split(';').Select(str => Int32.Parse(str.Trim())).ToArray();
+                            VariablesManager.Array = line.Split(';').Select(str => Int32.Parse(str.Trim())).ToArray();
                         }
 
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Wprowadzona wartość nie była liczbą, czy chcesz spróbować ponownie? (T) Tak/ (N) Nie, wyjdź");
+                    Console.WriteLine("Wprowadzona wartość nie była liczbą, czy chcesz spróbować ponownie? (T) Tak/ (N) Nie, wyjdź do menu głównego");
                     if (Console.ReadLine().ToUpper().Equals("T"))
                     {
                         Read("T");
                     }
-                    else Environment.Exit(0);
+                    else MainMenu.ShowMenu();
                 }
             }
             else if(key.Equals("N"))
             {
+                VariablesManager.IsManual = false;
                 Console.WriteLine("Otwieram plik.");
 
                 if (!_fileInfo.Exists)
@@ -119,10 +125,15 @@ namespace StudyOfTheEffectivenessOperations.FileExt
 
                 foreach (var line in lines)
                 {
-                    
+                    int count;
+                    bool success = Int32.TryParse(line, out count);
+                    if (success)
+                    {
+                        VariablesManager.NumberCount = count;
+                    }
                    if (line.Contains(";"))
                     {
-                        ArrayNumbers = line.Split(';').Select(str => Int32.Parse(str.Trim())).ToArray();
+                        VariablesManager.Array = line.Split(';').Select(str => Int32.Parse(str.Trim())).ToArray();
                     }
                     
                 }

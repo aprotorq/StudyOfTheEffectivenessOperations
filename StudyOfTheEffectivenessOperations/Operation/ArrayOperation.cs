@@ -1,69 +1,87 @@
-﻿using System;
+﻿using StudyOfTheEffectivenessOperations.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
 {
     public class ArrayOperation
     {
-        private int[] array_operation_init;
+        private int numberCount;
+        private int numberCountToRemove;
+        private Stopwatch sw = Stopwatch.StartNew();
+        private Random rnd = new Random();
+
+
+        public int NumberCount { get => numberCount; set => numberCount = value; }
+        public int NumberCountToRemove { get => numberCountToRemove; set => numberCountToRemove = value; }
 
         public ArrayOperation() {
+            NumberCount = VariablesManager.NumberCount;
+            NumberCountToRemove = VariablesManager.NumberCountToRemove;
             Menu();
         }
         public void Menu()
         {
-            string menu = "Wybierz numer wskazujący która akcja ma zostać wykonana wykonać na tablicy.";
-            menu += Environment.NewLine + "Każda wybrana akcja zostanie powtórzona w pętli 100 razy \r\n (za każdym razem zostanie wygenerowany nowy zestaw danych) a czas wykonania uśredniony";
+            Console.Clear();
+            
+           
+            string menu = $"Wybierz numer wskazujący która akcja ma zostać wykonana wykonać na tablicy. \r\n";
+            menu += "Każda wybrana akcja zostanie powtórzona w pętli 100 razy \r\n ";
+            menu += "(za każdym razem zostanie wygenerowany nowy zestaw danych) a czas wykonania uśredniony \r\n";
+            menu += $"W przypadku operacji dodawaniaa, najpier zostanie wygenerowanych {VariablesManager.DefaultQuantityBeforeAddOperation} liczb a dopiero potem eksperymenty \r\n";
+            menu += $"----------------------------\r\n";
+            menu += $"[1] dodwanie {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących \r\n";
+            menu += $"[2] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku tablicy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n";
+            menu += $"[3] dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu tablicy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n";
+            menu += $"[4] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu tablicy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n";
+            menu += $"[5] usuwanie {NumberCountToRemove} z początku tablicy {NumberCount} \r\n";
+            menu += $"[6] usuwanie {NumberCountToRemove} z końcu tablicy {NumberCount} \r\n";
+            menu += $"[7] usuwanie {NumberCountToRemove} z losowo wybranego miejsca tablicy {NumberCount} \r\n";
 
-            menu += Environment.NewLine + "---------------------------";
-            menu += Environment.NewLine + "[1] dodwanie 10000 losowych liczb w przedziele 0- 1000 000 (x100)";
-            menu += Environment.NewLine + "[2] dodwania 100 losowych liczb w przedziele 0- 1000 000 (x100) na początku tablicy";
-            menu += Environment.NewLine + "[3] dodwania 100 losowych liczb w przedziale 0- 1000 000 (x100) na końcu tablicy";
-            menu += Environment.NewLine + "[4] dodwania 100 losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu tablicy";
-            menu += Environment.NewLine + "[5] usuwanie 100 z początku tablicy";
-            menu += Environment.NewLine + "[6] usuwanie 100 z końcu tablicy";
-            menu += Environment.NewLine + "[7] usuwanie 100 z losowo wybranego miejsca tablicy";
+            menu += "--------------------------------------------------- \r\n";
+            menu += "[8] Wyjdź do głównego menu\r\n";
 
-            menu += Environment.NewLine + "---------------------------------------------------";
-            menu += Environment.NewLine + "[6] Wyjdź do głównego menu\r\n";
-
-            Console.WriteLine(menu);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(menu); 
+            Console.ForegroundColor = ConsoleColor.White;
             string key = Console.ReadLine();
 
             switch (key)
             {
                 case "1":
 
-                    MainMenu.ColorizeString("dodwanie 100000 losowych liczb w przedziele 0 - 1000 000(x100)\r\n");
+                    MainMenu.ColorizeString($"dodwanie {NumberCount} losowych liczb w przedziele 0 - 1000 000(x100)\r\n");
                     AddToArray();
                     break;
                 case "2":
-                    MainMenu.ColorizeString("dodwania 100000 losowych liczb w przedziele 0- 1000 000 (x100) na początku tablicy\r\n");
-                    AddToArraAtZeroIndexy();
+                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku tablicy\r\n");
+                    AddToArraAtZeroIndex();
                     break;
                 case "3":
-                    MainMenu.ColorizeString("dodwania 100000 losowych liczb w przedziale 0- 1000 000 (x100) na końcu tablicy\r\n");
+                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu tablicy\r\n");
                     AddToArraAtAtTheEnd();
                     break;
                 case "4":
-                    MainMenu.ColorizeString("dodwania 100000 losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu tablicy\r\n");
+                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu tablicy\r\n");
                     AddToArraAtAtRandomIndex();
                     break;
                 case "5":
-                    MainMenu.ColorizeString("usuwanie 100 z początku tablicy  (x100) \r\n");
+                    MainMenu.ColorizeString($"usuwanie {NumberCountToRemove} z początku tablicy  (x100) \r\n");
                     RemoveNumberFromFirtsIndexOfArray();
                     break;
                 case "6":
-                    MainMenu.ColorizeString("usuwanie 100 z końcu tablicy  (x100) \r\n");
+                    MainMenu.ColorizeString($"usuwanie {NumberCountToRemove} z końcu tablicy  (x100) \r\n");
                     RemoveNumberFromLastIndexOfArray();
                     break;
                 case "7":
-                    MainMenu.ColorizeString("usuwanie 100 z losowo wybranego miejsca tablicy  (x100) \r\n");
+                    MainMenu.ColorizeString($"usuwanie {NumberCountToRemove} z losowo wybranego miejsca tablicy  (x100) \r\n");
                     RemoveNumberFromRadnomIndexOfArray();
                     break;
                 case "8":
@@ -83,31 +101,34 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int iterations = 100;
             int elements = 100000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
-            Random rnd = new Random();
-            Stopwatch sw = Stopwatch.StartNew();
 
             for (int i = 0; i < iterations; i++)
             {
-                sw.Restart();
-
-                for (int j = 0; j < elements; j++)
-                {
+                //jeśli wybnrany zostanie zestaw testowy (wczyt z pliku)
+                int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.DefaultQuantityBeforeAddOperation;
+               
+                for (int j = 0; j < count; j++)
+                { 
+                    
                     Array.Resize(ref arr, arr.Length + 1);
-                    arr[arr.Length - 1] = rnd.Next(100000);
+
+                    sw.Restart();
+                    arr[arr.Length - 1] = VariablesManager.Array[j]; 
+                    sw.Stop();
                 }
 
-                sw.Stop();
+               
                 times[i] = sw.Elapsed.TotalSeconds;
                 Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} ms");
                 arr = new int[0];// tworzymy nową pustą tablicę przed każdą iteracją
             }
-            Console.WriteLine(times.Average());
+            Console.WriteLine($"Czas najmniejszy: {times.Min()}, czas najwiekszy: {times.Max()}, czas średni: {times.Average()}");
             Console.WriteLine("Koniec zadania 1.");
         }
         /// <summary>
         /// dodawane lsoowcyh liczb na pocżatek tablicy
         /// </summary>
-        public void AddToArraAtZeroIndexy()
+        public void AddToArraAtZeroIndex()
         {
 
             double[] times = new double[100];
@@ -115,8 +136,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int iterations = 100;
             int elements = 100000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
-            Random rnd = new Random();
-            Stopwatch sw = Stopwatch.StartNew();
 
             for (int i = 0; i < iterations; i++)
             {
@@ -152,14 +171,17 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int iterations = 100;
             int elements = 100000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
-            Random rnd = new Random();
-            Stopwatch sw = Stopwatch.StartNew();
             // Powtarzanie operacji
             for (int i = 0; i < iterations; i++)
             {
+                arr= new int[elements];
                 // Generowanie losowych liczb i dodawanie ich na końcu tablicy
-                sw.Restart();
                 for (int j = 0; j < elements; j++)
+                {
+                    arr[j] = rnd.Next(elements);
+                }
+                sw.Restart();
+                for (int j = 0; j < iterations; j++)
                 {
                     // Zwiększanie rozmiaru tablicy o 1
                     Array.Resize(ref arr, arr.Length + 1);
@@ -184,17 +206,22 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             double[] times = new double[100];
             const int maxValue = 100000;
             int iterations = 100;
-            int elements = 100000;
+            int elements = 1000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
-            Random rnd = new Random();
-            Stopwatch sw = Stopwatch.StartNew();
             // Powtarzanie operacji
             for (int i = 0; i < iterations; i++)
             {
-                // Generowanie losowych liczb i dodawanie ich na końcu tablicy
-                sw.Restart();
+                
                 for (int j = 0; j < elements; j++)
                 {
+                    arr = new int[elements];
+                    // Generowanie losowych liczb i dodawanie ich na końcu tablicy
+                    for (int m = 0; m < elements; m++)
+                    {
+                        arr[m] = rnd.Next(elements);
+                    }
+                    // Generowanie losowych liczb i dodawanie ich na końcu tablicy
+                    sw.Restart();
                     // Losowanie indeksu w tablicy, w którym ma zostać umieszczona liczba
                     int index = rnd.Next(0, arr.Length + 1);
 
@@ -224,7 +251,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             double[] times = new double[100];
             const int maxValue = 1000;
             int iterations = 100;
-            int elements = 1000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Random rnd = new Random();
             Stopwatch sw = Stopwatch.StartNew();
@@ -232,7 +258,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             //100 powtórzeń dla całego algorytmu
             for (int i = 0; i < iterations; i++)
             {
-                for (int j = 0; j < elements; j++)
+                for (int j = 0; j < VariablesManager.DefaultQuantityBeforeAddOperation; j++)
                 {
                     Array.Resize(ref arr, arr.Length + 1);
                     arr[arr.Length - 1] = rnd.Next(maxValue);
@@ -270,8 +296,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int iterations = 100;
             int elements = 1000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
-            Random rnd = new Random();
-            Stopwatch sw = Stopwatch.StartNew();
 
             //100 powtórzeń dla całego algorytmu
             for (int i = 0; i < iterations; i++)
@@ -310,8 +334,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int iterations = 100;
             int elements = 1000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
-            Random rnd = new Random();
-            Stopwatch sw = Stopwatch.StartNew();
 
             //100 powtórzeń dla całego algorytmu
             for (int i = 0; i < iterations; i++)

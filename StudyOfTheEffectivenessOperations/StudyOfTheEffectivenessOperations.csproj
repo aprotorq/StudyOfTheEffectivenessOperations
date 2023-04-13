@@ -43,13 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileExt\FileOperation.cs" />
+    <Compile Include="Helpers\FileOperation.cs" />
+    <Compile Include="Helpers\VariablesManager.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="Models\BlackRedTreeNodes.cs" />
     <Compile Include="Operation\ArrayOperation.cs" />
     <Compile Include="Operation\AVLTreeOperation.cs" />
     <Compile Include="Operation\BidirectionaListOperation.cs" />
     <Compile Include="Operation\BinaryHeapWithMaxOperation.cs" />
     <Compile Include="Operation\BlackRedTreeOperation.cs" />
+    <Compile Include="Operation\LinkedListOperation.cs" />
     <Compile Include="Operation\MaxHeap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
