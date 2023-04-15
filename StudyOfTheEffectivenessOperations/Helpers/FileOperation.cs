@@ -22,21 +22,21 @@ namespace StudyOfTheEffectivenessOperations.Helpers
             //pobranie informacji o pliku
             _fileInfo = new FileInfo(_filePath);
             //sprawdzanie czy dany plik istnieje i ruchamianie operacji na nim
-            Console.WriteLine($"Każda kolekcja przyjmuje zestaw poczatkowych danych wielkości {VariablesManager.DefaultQuantityBeforeAddOperation} a dane z pliku będą dodawane do danej kolekcji w trakcie eksperymentów.\r\n");
+            Console.WriteLine($"Każda kolekcja przyjmuje zestaw początkowych danych wielkości {VariablesManager.QuantityToAutoFill} a dane z pliku (jesli będzie to test manualny) będą dodawane do danej kolekcji w trakcie eksperymentów.\r\n");
             Console.WriteLine("Czy chcesz zmienić początkowy zestaw danych? (T) tak, każda inna litera oznacza -NIE\r\n");
             if (Console.ReadKey().Key == ConsoleKey.T)
             {
                 int count;
-                Console.WriteLine("\r\nPodaj liczę pocżatkowych danych");
+                Console.WriteLine("\r\nPodaj liczę początkowych danych");
 
                 string consoleInput = Console.ReadLine();
                 bool success = Int32.TryParse(consoleInput, out count);
                 if (success)
                 {
-                    VariablesManager.DefaultQuantityBeforeAddOperation = count;
+                    VariablesManager.QuantityToAutoFill = count;
                 }
             }
-            Console.WriteLine("\r\nUtworzyć nowy zestaw danych? (T) utworzyć/ (N) wczytać istniejący z pliku ");
+            Console.WriteLine("\r\nUtworzyć nowy zestaw danych do manualnego testowania? (T) utworzyć/ (N) wczytać istniejący z pliku ");
             string key = Console.ReadLine().ToUpper();
             Read(key);
             
@@ -71,7 +71,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
         /// </summary>
         /// <param name="key">T/N - czy odczytać istnirejący plik, czy utworzyć nowy zestaw danych</param>
         private static void Read(string key)
-        {
+        {   //tworzy nowy plik z podaną ilościa lemenetów
             if(key.Equals("T"))
             {
                 VariablesManager.IsManual = true;
@@ -81,7 +81,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
                 bool success = Int32.TryParse(consoleInput, out count);
                 if (success)
                 {
-                    VariablesManager.NumberCount= count;
+                    VariablesManager.RandomNumberCount= count;
                     File.Delete(_filePath);
                     AddToFile(count);
                     var lines = File.ReadLines(_filePath);
@@ -108,6 +108,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
             }
             else if(key.Equals("N"))
             {
+                //wczytuje istniejący plik z elementami, jesli go nie ma to go utworzy a domyslnie będzie 20 liczb
                 VariablesManager.IsManual = false;
                 Console.WriteLine("Otwieram plik.");
 
@@ -129,7 +130,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
                     bool success = Int32.TryParse(line, out count);
                     if (success)
                     {
-                        VariablesManager.NumberCount = count;
+                        VariablesManager.RandomNumberCount = count;
                     }
                    if (line.Contains(";"))
                     {
