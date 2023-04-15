@@ -57,9 +57,9 @@ namespace StudyOfTheEffectivenessOperations
                     break;
             }
         }
-        public static void ColorizeString(string Text)
+        public static void ColorizeString(string Text, ConsoleColor setColor = ConsoleColor.Green)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = setColor;
             Console.Write(Text);
             Console.ForegroundColor = ConsoleColor.White;
         }

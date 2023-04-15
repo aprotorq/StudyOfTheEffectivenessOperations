@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace StudyOfTheEffectivenessOperations.Helpers
+namespace StudyOfTheEffectivenessOperations.Helpers;
 {
     internal static class FileOperation
     {
@@ -12,7 +12,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
 
 
         /// <summary>
-        /// Tworze nowego pliku
+        /// Tworzenie nowego pliku
         /// </summary>
         public static void Create()
         {
@@ -57,7 +57,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
                     for (int i = 0; i < counter; i++)
                     {
                         int randInt = rand.Next(1000);
-                        number += i == counter-1? randInt.ToString() : randInt.ToString() + ";";
+                        number += i == counter - 1? randInt.ToString() : randInt.ToString() + ";";
                     }
                     sw.WriteLine(counter.ToString() + Environment.NewLine+ number);
                     sw.Close();
