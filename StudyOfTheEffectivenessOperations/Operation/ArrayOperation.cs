@@ -106,7 +106,8 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
 
                 if (VariablesManager.IsManual)
-                { sw.Restart();
+                { 
+                    sw.Restart();
                     for (int j = 0; j < count; j++)
                     {
 
@@ -120,6 +121,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 }
                 else 
                 {
+                    arr = new int[count];
                     for (int j = 0; j < count; j++)
                     {
                         arr[j] = rnd.Next(count);
@@ -160,17 +162,18 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Console.WriteLine("Czekaj...");
+            int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
+
             for (int i = 0; i < iterations; i++)
             {
                 
-                sw.Restart();
+                
                 // Dodaj losowe liczby do tablicy na początku
                 //jeśli wybrany zostanie zestaw testowy (wczyt z pliku)
-                int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
 
                 if (VariablesManager.IsManual)
                 {
-                    sw.Restart();
+                   sw.Restart();
                     for (int j = 0; j < count; j++)
                     {
 
@@ -185,9 +188,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 }
                 else
                 {
-                    for (int j = 0; j < count; j++)
+                    arr = new int[VariablesManager.QuantityToAutoFill];
+                    for (int j = 0; j < VariablesManager.QuantityToAutoFill; j++)
                     {
-                        arr[j] = rnd.Next(count);
+                        arr[j] = rnd.Next(maxValue);
                     }
                     sw.Restart();
 
@@ -205,19 +209,9 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                     }
                     sw.Stop();
                 }
-                //----------------------------------------------------
-                //for (int j = 0; j < elements; j++)
-                //{
-                //    // Zwiększanie rozmiaru tablicy o 1
-                //    Array.Resize(ref arr, arr.Length + 1);
-                //    for (int k = arr.Length - 1; k > 0; k--)
-                //    {
-                //        arr[k] = arr[k - 1];
-                //    }
-                //    arr[0] = rnd.Next(maxValue);
-                //}
+                
 
-                sw.Stop();
+               
                 times[i] = sw.Elapsed.TotalMilliseconds;
                 //Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} sec");
                 arr = new int[0];// tworzymy nową pustą tablicę przed każdą iteracją
@@ -240,10 +234,11 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Console.WriteLine("Czekaj...");
+            int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
+
             // Powtarzanie operacji
             for (int i = 0; i < iterations; i++)
             {
-                int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
                 arr = new int[count];
                 // Generowanie losowych liczb i dodawanie ich na końcu tablicy
                 if (VariablesManager.IsManual)
@@ -263,6 +258,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 }
                 else
                 {
+                    arr = new int[count];
                     for (int j = 0; j < count; j++)
                     {
                         arr[j] = rnd.Next(count);
@@ -280,7 +276,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                     sw.Stop();
                 }
                 times[i] = sw.Elapsed.TotalMilliseconds;
-                //Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} sec");
                 arr = new int[0];// tworzymy nową pustą tablicę przed każdą iteracją
             }
                 Console.Clear();
@@ -302,12 +297,11 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int elements = 1000;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Console.WriteLine("Czekaj...");
-
+            int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
             // Powtarzanie operacji
             for (int i = 0; i < iterations; i++)
             {
-                int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
-                arr = new int[count];
+                
                 // Generowanie losowych liczb i dodawanie ich na końcu tablicy
                 if (VariablesManager.IsManual)
                 {
@@ -317,25 +311,27 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
 
                         // Zwiększanie rozmiaru tablicy o 1
                         Array.Resize(ref arr, arr.Length + 1);
-
+                        //losowy index w tablicy
+                        int index = rnd.Next(0, arr.Length + 1);
                         // Dodawanie  liczby na końcu
-                        arr[arr.Length - 1] = VariablesManager.Array[j];
+                        arr[index] = VariablesManager.Array[j];
 
                     }
                     sw.Stop();
                 }
                 else
                 {
+                    arr = new int[count];
                     for (int j = 0; j < count; j++)
                     {
-                        arr = new int[count];
+                        arr[j] = rnd.Next(count);
+                    } 
+                    sw.Restart();
+                    for (int j = 0; j < count; j++)
+                    {
+                        
                         // Generowanie losowych liczb i dodawanie ich na końcu tablicy
-                        for (int m = 0; m < elements; m++)
-                        {
-                            arr[m] = rnd.Next(elements);
-                        }
-                        // Generowanie losowych liczb i dodawanie ich na końcu tablicy
-                        sw.Restart();
+                       
                         // Losowanie indeksu w tablicy, w którym ma zostać umieszczona liczba
                         int index = rnd.Next(0, arr.Length + 1);
 
@@ -352,14 +348,15 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                         // Umieszczanie wylosowanej liczby w tablicy w losowym miejscu
                         arr[index] = number;
                     }
+                    sw.Stop();
                 }
-                sw.Stop();
+                
                 times[i] = sw.Elapsed.TotalSeconds;
                 Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} sec");
                 arr = new int[0];// tworzymy nową pustą tablicę przed każdą iteracją
             }
             Console.Clear();
-            Console.WriteLine($"Czas najmniejszy: {times.Min()}, czas najwiekszy: {times.Max()}, czas średni: {times.Average()} ms"); Console.WriteLine("Koniec zadania 3.");
+            Console.WriteLine($"Czas najmniejszy: {times.Min()} ms, czas najwiekszy: {times.Max()} ms, czas średni: {times.Average()} ms"); Console.WriteLine("Koniec zadania 3.");
             Console.WriteLine("Koniec zadania 4.");
             Menu();
 
@@ -374,14 +371,22 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Random rnd = new Random();
             Stopwatch sw = Stopwatch.StartNew();
-
+            int count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
             //100 powtórzeń dla całego algorytmu
             for (int i = 0; i < iterations; i++)
             {
-                for (int j = 0; j < VariablesManager.QuantityToAutoFill; j++)
+                if (VariablesManager.IsManual)
                 {
-                    Array.Resize(ref arr, arr.Length + 1);
-                    arr[arr.Length - 1] = rnd.Next(maxValue);
+                    arr = new int[count];
+                    for (int j = 0; j < count; j++)
+                    {
+                        arr[j] = VariablesManager.Array[j];
+                    }
+                    for (int j = 0; j < VariablesManager.QuantityToAutoFill; j++)
+                    {
+                        Array.Resize(ref arr, arr.Length + 1);
+                        arr[arr.Length - 1] = rnd.Next(maxValue);
+                    }
                 }
                 // Usuń pierwszą liczbę z początku tablicy a następnie zmniejsz rozmiar tablicy o 1
                 for (int j = 0; j < iterations; j++)
