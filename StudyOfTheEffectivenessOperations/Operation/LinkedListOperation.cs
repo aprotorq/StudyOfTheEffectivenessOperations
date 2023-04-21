@@ -20,7 +20,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
 
         public LinkedListOperation()
         {
-            NumberCount = VariablesManager.NumberCount;
+            NumberCount = VariablesManager.RandomNumberCount;
             NumberCountToRemove = VariablesManager.NumberCountToRemove;
             // Tworzenie nowej pustej listy dwukierunkowej
             Lista = new LinkedList<int>();
@@ -33,10 +33,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
             menu += "(za każdym razem zostanie wygenerowany nowy zestaw danych) a czas wykonania uśredniony \r\n ";
 
             menu += $" ---------------------------\r\n";
-            menu += $"[1] dodwanie {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n ";
-            menu += $"[2] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku listy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących \r\n ";
-            menu += $"[3] dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu listy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących \r\n ";
-            menu += $"[4] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących \r\n ";
+            menu += $"[1] dodwanie {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) do {VariablesManager.QuantityToAutoFill} istniejących\r\n ";
+            menu += $"[2] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku listy do {VariablesManager.QuantityToAutoFill} istniejących \r\n ";
+            menu += $"[3] dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu listy do {VariablesManager.QuantityToAutoFill} istniejących \r\n ";
+            menu += $"[4] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {VariablesManager.QuantityToAutoFill} istniejących \r\n ";
             menu += $"[5] usuwanie {NumberCountToRemove} z początku listy {NumberCount} elementowej \r\n ";
             menu += $"[6] usuwanie {NumberCountToRemove} z końcu listy {NumberCount} elementowej \r\n ";
             menu += $"[7] usuwanie {NumberCountToRemove} z losowo wybranego miejsca listy {NumberCount} elementowej \r\n ";
@@ -52,19 +52,19 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
             {
                 case "1":
 
-                    MainMenu.ColorizeString($"dodwanie {NumberCount} losowych liczb w przedziele 0 - 1000 000(x100) do listy {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n");
+                    MainMenu.ColorizeString($"dodwanie {NumberCount} losowych liczb w przedziele 0 - 1000 000(x100) do listy {VariablesManager.QuantityToAutoFill} istniejących\r\n");
                     Run();
                     break;
                 case "2":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku listy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n");
+                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku listy do {VariablesManager.QuantityToAutoFill} istniejących\r\n");
                     AddToBegining();
                     break;
                 case "3":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu listy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n");
+                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu listy do {VariablesManager.QuantityToAutoFill} istniejących\r\n");
                     AddToEnding();
                     break;
                 case "4":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {VariablesManager.DefaultQuantityBeforeAddOperation} istniejących\r\n");
+                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {VariablesManager.QuantityToAutoFill} istniejących\r\n");
                     AddToRandom();
                     break;
                 case "5":
@@ -99,7 +99,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
         {
             times = new double[times.Length];
             lista = new LinkedList<int>();
-            for (int i = 0; i < VariablesManager.DefaultQuantityBeforeAddOperation; i++)
+            for (int i = 0; i < VariablesManager.QuantityToAutoFill; i++)
             {
                 lista.AddFirst(random.Next(10000));
             }
@@ -116,7 +116,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
         {
             times = new double[times.Length];
             lista = new LinkedList<int>();
-            for (int i = 0; i < VariablesManager.DefaultQuantityBeforeAddOperation; i++)
+            for (int i = 0; i < VariablesManager.QuantityToAutoFill; i++)
             {
                 lista.AddFirst(random.Next(10000));
             }
@@ -133,21 +133,21 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
         public void AddToRandom(int randomNumber = 1)
         {
             times = new double[times.Length];
-            //for (int i = 0; i < VariablesManager.DefaultQuantityBeforeAddOperation; i++)
+            //for (int i = 0; i < VariablesManager.QuantityToAutoFill; i++)
+            //{
+            //    // Dodawanie nowych elementów w losowym miejscu listy
+            //    Random rand = new Random();
+            //    int index = rand.Next(0, lista.Count);
+            //    LinkedListNode<int> wezel = lista.First;
+            //    for (int i = 0; i < index; i++)
             //    {
-            //        // Dodawanie nowych elementów w losowym miejscu listy
-            //        Random rand = new Random();
-            //        int index = rand.Next(0, lista.Count);
-            //        LinkedListNode<int> wezel = lista.First;
-            //        for (int i = 0; i < index; i++)
-            //        {
-            //            wezel = wezel.Next;
-            //        }
-            //        lista.AddAfter(wezel, 15);
-            //        sw.Stop();
-            //        times[i] = sw.Elapsed.TotalSeconds;
-            //        Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} ms");
+            //        wezel = wezel.Next;
             //    }
+            //    lista.AddAfter(wezel, 15);
+            //    sw.Stop();
+            //    times[i] = sw.Elapsed.TotalSeconds;
+            //    Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} ms");
+            //}
         }
         public void RemoveFromStart()
         {

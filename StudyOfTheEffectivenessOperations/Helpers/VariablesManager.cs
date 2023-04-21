@@ -10,14 +10,14 @@ namespace StudyOfTheEffectivenessOperations.Helpers
     {
         private static bool isManual;
         private static int defaultQuantityBeforeAddOperation = 10000;
-        private static int numberCount;
-        private static int numberCountToRemove = 100;
+        private static int randomNumberCount;
+        private static int numberCountToRemove = 1;
         private static int[] array;
 
-        public static int NumberCount { get => numberCount; set => numberCount = value; }
+        public static int RandomNumberCount { get => randomNumberCount; set => randomNumberCount = value; }
         public static int NumberCountToRemove { get => numberCountToRemove; set => numberCountToRemove = value; }
         public static int[] Array { get => array; set => array = value; }
         public static bool IsManual { get => isManual; set => isManual = value; }
-        public static int DefaultQuantityBeforeAddOperation { get => defaultQuantityBeforeAddOperation; set => defaultQuantityBeforeAddOperation = value; }
+        public static int QuantityToAutoFill { get => defaultQuantityBeforeAddOperation; set => defaultQuantityBeforeAddOperation = value; }
     }
 }

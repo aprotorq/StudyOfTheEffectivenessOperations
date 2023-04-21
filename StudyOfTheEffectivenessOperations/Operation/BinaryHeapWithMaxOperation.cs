@@ -45,7 +45,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
                     Add(Int32.Parse(Console.ReadLine()));
                     Menu();
                     break;
-                case "3":
+                //case "3":
                 //    Console.Write("Wyszukiwanie liczby w drzewie\r\n");
                 //    Search(Int32.Parse(Console.ReadLine()));
                 //    break;
