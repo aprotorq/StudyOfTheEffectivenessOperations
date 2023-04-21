@@ -11,7 +11,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
         private static bool isManual;
         private static int defaultQuantityBeforeAddOperation = 10000;
         private static int randomNumberCount;
-        private static int numberCountToRemove = 100;
+        private static int numberCountToRemove = 1;
         private static int[] array;
 
         public static int RandomNumberCount { get => randomNumberCount; set => randomNumberCount = value; }

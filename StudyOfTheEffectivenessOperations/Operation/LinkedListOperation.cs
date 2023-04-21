@@ -133,21 +133,21 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
         public void AddToRandom(int randomNumber = 1)
         {
             times = new double[times.Length];
-            //for (int i = 0; i < VariablesManager.DefaultQuantityBeforeAddOperation; i++)
+            //for (int i = 0; i < VariablesManager.QuantityToAutoFill; i++)
+            //{
+            //    // Dodawanie nowych elementów w losowym miejscu listy
+            //    Random rand = new Random();
+            //    int index = rand.Next(0, lista.Count);
+            //    LinkedListNode<int> wezel = lista.First;
+            //    for (int i = 0; i < index; i++)
             //    {
-            //        // Dodawanie nowych elementów w losowym miejscu listy
-            //        Random rand = new Random();
-            //        int index = rand.Next(0, lista.Count);
-            //        LinkedListNode<int> wezel = lista.First;
-            //        for (int i = 0; i < index; i++)
-            //        {
-            //            wezel = wezel.Next;
-            //        }
-            //        lista.AddAfter(wezel, 15);
-            //        sw.Stop();
-            //        times[i] = sw.Elapsed.TotalSeconds;
-            //        Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} ms");
+            //        wezel = wezel.Next;
             //    }
+            //    lista.AddAfter(wezel, 15);
+            //    sw.Stop();
+            //    times[i] = sw.Elapsed.TotalSeconds;
+            //    Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} ms");
+            //}
         }
         public void RemoveFromStart()
         {
