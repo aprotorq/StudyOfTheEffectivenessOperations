@@ -156,7 +156,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                     {
                         arr[j] = rnd.Next(count);
                     }
-                    Console.WriteLine("Poniżej wyswietlona zostaje tablica z liczbami do testu\r\n");
+                    Console.WriteLine("Poniżej wyświetlona zostaje tablica z liczbami do testu\r\n");
                     for (int j = 0; j < count; j++)
                     {
                         Console.Write(arr[j] + ",");

@@ -2,14 +2,13 @@
 using System.IO;
 using System.Linq;
 
-namespace StudyOfTheEffectivenessOperations.Helpers;
+namespace StudyOfTheEffectivenessOperations.Helpers
 {
     internal static class FileOperation
     {
         private static string _filePath;
         private static FileInfo _fileInfo;
         private static bool _manual;
-
 
         /// <summary>
         /// Tworzenie nowego pliku
@@ -26,11 +25,10 @@ namespace StudyOfTheEffectivenessOperations.Helpers;
             Console.WriteLine("Czy chcesz zmienić początkowy zestaw danych? (T) tak, każda inna litera oznacza -NIE\r\n");
             if (Console.ReadKey().Key == ConsoleKey.T)
             {
-                int count;
                 Console.WriteLine("\r\nPodaj liczę początkowych danych");
 
                 string consoleInput = Console.ReadLine();
-                bool success = Int32.TryParse(consoleInput, out count);
+                bool success = Int32.TryParse(consoleInput, out int count);
                 if (success)
                 {
                     VariablesManager.QuantityToAutoFill = count;
@@ -38,9 +36,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers;
             }
             Console.WriteLine("\r\nUtworzyć nowy zestaw danych do manualnego testowania? (T) utworzyć/ (N) wczytać istniejący z pliku ");
             string key = Console.ReadLine().ToUpper();
-            Read(key);
-            
-            
+            Read(key);              
         }
         /// <summary>
         /// Dodawanie elementów do pliku 
@@ -49,7 +45,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers;
         private static void AddToFile(int num = 20)
         {
             using (StreamWriter sw = _fileInfo.CreateText())
-                {
+            {
                     //sw.WriteLine("100\r\n"/*+ Environment.NewLine*/);
                     string number = string.Empty;
                     Random rand = new Random(); 
@@ -76,9 +72,10 @@ namespace StudyOfTheEffectivenessOperations.Helpers;
             {
                 VariablesManager.IsManual = true;
                 Console.Write(Environment.NewLine+"Podaj sugerowaną ilość elementów"+ Environment.NewLine );
-                int count;
+
                 string consoleInput = Console.ReadLine();
-                bool success = Int32.TryParse(consoleInput, out count);
+                
+                bool success = Int32.TryParse(consoleInput, out int count);
                 if (success)
                 {
                     VariablesManager.RandomNumberCount= count;
@@ -91,7 +88,9 @@ namespace StudyOfTheEffectivenessOperations.Helpers;
 
                         if (line.Contains(";"))
                         {
-                            VariablesManager.Array = line.Split(';').Select(str => Int32.Parse(str.Trim())).ToArray();
+                            VariablesManager.Array = line
+                                .Split(';')
+                                .Select(str => Int32.Parse(str.Trim())).ToArray();
                         }
 
                     }
@@ -126,8 +125,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers;
 
                 foreach (var line in lines)
                 {
-                    int count;
-                    bool success = Int32.TryParse(line, out count);
+                    bool success = Int32.TryParse(line, out int count);
                     if (success)
                     {
                         VariablesManager.RandomNumberCount = count;
@@ -140,8 +138,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers;
                 }
                 Console.WriteLine($"Dane zostaly wczytane z: {_filePath}");
                 MainMenu.ShowMenu();
-            }
-            
+            }            
         }
     }
 }
