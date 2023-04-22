@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace StudyOfTheEffectivenessOperations.Helpers;
+namespace StudyOfTheEffectivenessOperations.Helpers
 {
     internal static class FileOperation
     {

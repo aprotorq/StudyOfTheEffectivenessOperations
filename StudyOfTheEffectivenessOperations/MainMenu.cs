@@ -1,6 +1,5 @@
 ﻿using StudyOfTheEffectivenessOperations.Helpers;
 using StudyOfTheEffectivenessOperations.Operation.ArrayOperation;
-using StudyOfTheEffectivenessOperations.Operation.BidirectionaListOperation;
 using StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation;
 using StudyOfTheEffectivenessOperations.Operation.BlackRedTreeOperation;
 using StudyOfTheEffectivenessOperations.Operation.LinkedListOperation;
@@ -18,7 +17,7 @@ namespace StudyOfTheEffectivenessOperations
             Console.WriteLine("\r\nWybierz strukturę, na której chcesz przeprowadzić eksperymenty:\r\n");
             string menu = "[1] Tablica\r\n";
                     menu += "[2] Lista dwukierunkowa\r\n";
-                    menu += "[3] Kopiec binanry\r\n";
+                    menu += "[3] Kopiec binanry-\r\n";
                     menu += "[4] Drzewo czerwono-czarne\r\n";
                     menu += "--------------------------\r\n";
                     menu += "[5] Zmiana zestawu danych\r\n";
@@ -34,7 +33,6 @@ namespace StudyOfTheEffectivenessOperations
                     break;
                 case "2":
                     ColorizeString("Wybrana została Lista dwukierunkowa\r\n");
-                    //BidirectionaListOperation listOp = new BidirectionaListOperation();
                     LinkedListOperation linked = new LinkedListOperation();
                     break;
                 case "3":

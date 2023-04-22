@@ -20,6 +20,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
         private Stopwatch sw = Stopwatch.StartNew();
         private Random rnd = new Random();
         public int count;
+        const int maxValue = 100000;
 
 
         public int NumberCount { get => numberCount; set => numberCount = value; }
@@ -194,7 +195,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
         public void AddToArray() {
             Console.Clear();
             double[] times = new double[100];
-            const int maxValue = 100000;
+            
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Console.WriteLine("Czekaj...");
@@ -254,7 +255,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             Console.Clear();
 
             double[] times = new double[100];
-            const int maxValue = 100000;
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Console.WriteLine("Czekaj...");
@@ -325,7 +325,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             Console.Clear();
 
             double[] times = new double[100];
-            const int maxValue = 100000;
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Console.WriteLine("Czekaj...");
@@ -397,7 +396,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 }
             }
             double[] times = new double[100];
-            const int maxValue = 100000;
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Console.WriteLine("Czekaj...");
@@ -476,7 +474,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             Console.Clear();
 
             double[] times = new double[100];
-            const int maxValue = 1000;
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             Random rnd = new Random();
@@ -538,7 +535,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             Console.Clear();
 
             double[] times = new double[100];
-            const int maxValue = 1000;
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
      
@@ -595,13 +591,12 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             Console.Clear();
 
             double[] times = new double[100];
-            const int maxValue = 1000;
             int iterations = 100;
             int[] arr = new int[0];// tworzymy nową pustą tablicę
             int userIndex = 0;
             if (VariablesManager.IsManual)
             {
-                Console.WriteLine("Podaj liczbę jaką chcesz znaleść");
+                Console.WriteLine("Podaj indeks, który chcesz usunąć");
                 Int32.TryParse(Console.ReadLine(), out userIndex);
                 if (userIndex > count)
                 {
