@@ -15,7 +15,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
         /// </summary>
         public static void Create()
         {
-            string fileName = string.Concat("\\liczby.txt");
+            string fileName = String.Concat("\\liczby.txt");
             //pobranie domyslnej ściezki do ppliku z danymi z pulpicie
             _filePath = String.Concat(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
             //pobranie informacji o pliku
@@ -130,11 +130,10 @@ namespace StudyOfTheEffectivenessOperations.Helpers
                     {
                         VariablesManager.RandomNumberCount = count;
                     }
-                   if (line.Contains(";"))
+                    if (line.Contains(";"))
                     {
                         VariablesManager.Array = line.Split(';').Select(str => Int32.Parse(str.Trim())).ToArray();
-                    }
-                    
+                    }                    
                 }
                 Console.WriteLine($"Dane zostaly wczytane z: {_filePath}");
                 MainMenu.ShowMenu();
