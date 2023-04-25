@@ -1,61 +1,61 @@
 ﻿using StudyOfTheEffectivenessOperations.Helpers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 
 namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
 {
     public class BinaryHeapWithMaxOperation
     {
-        private int[] heap;
+        private int[] sterta;
         private int size;
-
+        public Random rnd = new Random();
+        private Stopwatch sw = Stopwatch.StartNew();
+        private double[] times = new double[100];
+        public int count;
+        const int maxValue = 100000;
         public BinaryHeapWithMaxOperation()
         {
-            heap = new int[VariablesManager.Array.Length];
+            
+            count = VariablesManager.IsManual == true ? VariablesManager.Array.Length : VariablesManager.QuantityToAutoFill;
+            sterta = new int[count];
             size = 0;
-            //_array = VariablesManager.Array;
-            //heap = new int[_array.Length];
-            //size = 0;
             Menu();
         }
         public void Menu()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Wybierz operację");
-            string menu = "[1] Wczytaj dane\r\n";
-            menu += "[2] Dodaj liczbę\r\n";
-            menu += "[3] Wyszukaj liczbę\r\n";
-            menu += "[4] Usuń liczbę jeśli istnieje\r\n";
-            menu += "[5] Wyświetl strukturę\r\n";
+            string menu = "[1] Dodaj liczbę\r\n";
+            menu += "[2] Wyszukaj liczbę\r\n";
+            menu += "[3] Usuń liczbę z danego indeksu\r\n";
+            menu += "[4] Wyświetl strukturę\r\n";
             menu += "------------------------\r\n";
-            menu += "[6] Wyjdź do głównego menu\r\n";
+            menu += "[5] Wyjdź do głównego menu\r\n";
             Console.Write(menu);
             string key = Console.ReadLine();
 
             switch (key)
             {
+               
                 case "1":
-                    Console.Write("Tworzenie drzewa binarnego\r\n");
-                    Run();
+                    AddItemToTree();
                     break;
                 case "2":
-                    Console.Write("Podaj liczbę jaką chcesz dodać do węzła\r\n");
-                    Add(Int32.Parse(Console.ReadLine()));
-                    Menu();
+                    Console.Write("Wyszukiwanie liczby w drzewie\r\n");
+                    Find();
                     break;
-                //case "3":
-                //    Console.Write("Wyszukiwanie liczby w drzewie\r\n");
-                //    Search(Int32.Parse(Console.ReadLine()));
-                //    break;
-                //case "4":
-                //    Console.Write("Usuwanie liczby z drzewa\r\n");
-                //    Remove(Int32.Parse(Console.ReadLine()));
-                //    break;
+                case "3":
+                    Console.Write("Usuwanie liczby na danym indexie z drzewa\r\n");
+                    RemoveElement();
+                    break;
+                case "4":
+                    Display();
+                    break;
                 case "5":
-                    PrintHeap();
-                    break;
-                case "6":
                     MainMenu.ShowMenu();
                     break;
                 default:
@@ -63,20 +63,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
                     break;
             }
         }
-        public void Run()
-        {
-            Console.WriteLine($"\r\nWpisz 'T' by uruchomić algorytm budowania drzewa na wczytanych {VariablesManager.Array.Length} danych");
-            if (Console.ReadKey().Key == ConsoleKey.T)
-            {
-                Console.WriteLine(Environment.NewLine);
-                for (int i = 0; i < VariablesManager.Array.Length - 1; i++)
-                {
-                    Add(VariablesManager.Array[i]);
-                }
-                PrintHeap();
-            }
-        }
-
+      
         private int Parent(int index)
         {
             return (index - 1) / 2;
@@ -92,105 +79,236 @@ namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
             return 2 * index + 2;
         }
 
-        private void Swap(int index1, int index2)
+        private void ChangePlace(int index1, int index2)
         {
-            int temp = heap[index1];
-            heap[index1] = heap[index2];
-            heap[index2] = temp;
+            int temp = sterta[index1];
+            sterta[index1] = sterta[index2];
+            sterta[index2] = temp;
         }
 
-        public void Add(int value)
+        public void AddItemToTree()
         {
-            if (size == heap.Length)
+            int iterations = 100;
+            for (int i = 0; i < iterations; i++)
             {
-                throw new Exception("kopiec jest pusty");
-            }
+                sterta = new int[count];
+                size = 0;
+                if (VariablesManager.IsManual)
+                {
 
-            heap[size] = value;
-            size++;
+                    for (int j = 0; j < count -1; j++)
+                    {   
+                        sw.Restart();
+                        sterta[size] = VariablesManager.Array[j];
+                        size++;
+                       
+                        int index = size - 1;
+                        while (index != 0 && sterta[index] > sterta[Parent(index)])
+                        {
+                            ChangePlace(index, Parent(index));
+                            index = Parent(index);
+                        }
+                        sw.Stop();
+                    }
+                    if (size == sterta.Length)
+                    {
+                        MainMenu.ColorizeString("kopiec jest pusty",ConsoleColor.Red);
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < count -1; j++)
+                    {
+                        sw.Restart();
+                        sterta[size] = rnd.Next(maxValue);
+                        size++;
 
-            int index = size - 1;
-            while (index != 0 && heap[index] > heap[Parent(index)])
-            {
-                Swap(index, Parent(index));
-                index = Parent(index);
+                        int index = size - 1;
+                        while (index != 0 && sterta[index] > sterta[Parent(index)])
+                        {
+                            ChangePlace(index, Parent(index));
+                            index = Parent(index);
+                        }
+                        sw.Stop();
+                    }
+                    if (size == sterta.Length)
+                    {
+                        MainMenu.ColorizeString("kopiec jest pusty", ConsoleColor.Red);
+                    }
+                }
+                
+                times[i] = sw.Elapsed.TotalMilliseconds * 1000000;
             }
+            Console.WriteLine($"Czas najmniejszy: {times.Min()} ms, czas najwiekszy: {times.Max()} ms, czas średni: {times.Average()} ms");
+            Console.WriteLine("Koniec zadania 1.");
+            Menu();
         }
 
-        public int Remove()
+        public void RemoveElement()
         {
-            if (size == 0)
+
+            int userNumber = 0;
+            Console.WriteLine($"Podaj indeks, do usunięcia < maks {count + 1}");
+            Int32.TryParse(Console.ReadLine(), out userNumber);
+           
+            int iterations = 100;
+            for (int i = 0; i < iterations; i++)
             {
-                throw new Exception("kopiec jest pusty");
+                sterta = new int[count];
+                size = 0;
+                if (VariablesManager.IsManual)
+                {
+                    for (int j = 0; j < count -1; j++)
+                    {
+
+                        sterta[size] = VariablesManager.Array[j];
+                        size++;
+
+                        int index = size - 1;
+                        while (index != 0 && sterta[index] > sterta[Parent(index)])
+                        {
+                            ChangePlace(index, Parent(index));
+                            index = Parent(index);
+                        }
+
+                    }
+                   
+                    sw.Restart();
+                    sterta[userNumber] = sterta[size - 1];
+                    
+                    Heapify(userNumber);
+                    sw.Stop();
+
+                }
+                else
+                {
+                    for (int j = 0; j < count -1; j++)
+                    {
+
+                        sterta[size] = rnd.Next(maxValue);
+                        size++;
+
+                        int index = size - 1;
+                        while (index != 0 && sterta[index] > sterta[Parent(index)])
+                        {
+                            ChangePlace(index, Parent(index));
+                            index = Parent(index);
+                        }
+
+                    }
+                    
+                    sw.Restart();
+                    sterta[userNumber] = sterta[size - 1];
+                    Heapify(userNumber);
+                    sw.Stop();
+
+                }
+                
+                
+              
+                times[i] = sw.Elapsed.TotalMilliseconds * 1000000;
             }
-
-            int root = heap[0];
-            heap[0] = heap[size - 1];
-            size--;
-
-            Heapify(0);
-
-            return root;
+            
+            Console.WriteLine($"Czas najmniejszy: {times.Min()} ms, czas najwiekszy: {times.Max()} ms, czas średni: {times.Average()} ms");
+            Console.WriteLine("Koniec zadania 1.");
+            Menu();
         }
-
+      
+        /// <summary>
+        /// Układa na nowo elkementy po usunięciu jednego z nich
+        /// </summary>
+        /// <param name="index"></param>
         private void Heapify(int index)
         {
             int leftChild = LeftChild(index);
             int rightChild = RightChild(index);
             int largest = index;
 
-            if (leftChild < size && heap[leftChild] > heap[largest])
+            if (leftChild < size && sterta[leftChild] > sterta[largest])
             {
                 largest = leftChild;
             }
 
-            if (rightChild < size && heap[rightChild] > heap[largest])
+            if (rightChild < size && sterta[rightChild] > sterta[largest])
             {
                 largest = rightChild;
             }
 
             if (largest != index)
             {
-                Swap(index, largest);
+                ChangePlace(index, largest);
                 Heapify(largest);
             }
         }
 
-        public bool Contains(int value)
+        /// <summary>
+        /// Wyszukuje liczby w drzewie
+        /// </summary>
+        /// <param name="value"></param>
+        public void Find()
         {
+            for (int j = 0; j < count - 1; j++)
+            {
+
+                sterta[size] = rnd.Next(maxValue);
+                size++;
+
+                int index = size - 1;
+                while (index != 0 && sterta[index] > sterta[Parent(index)])
+                {
+                    ChangePlace(index, Parent(index));
+                    index = Parent(index);
+                }
+
+            }
+            bool found = false;
+            int userNumber = 0;
+            Console.WriteLine($"Podaj liczbe ,którą szukasz w kolekcji (liczby sa wygenerowane randomowo)");
+            Int32.TryParse(Console.ReadLine(), out userNumber);
+
             for (int i = 0; i < size; i++)
             {
-                if (heap[i] == value)
+                if (sterta[i] == userNumber)
                 {
-                    return true;
+                    found = true;
+                    MainMenu.ColorizeString($"Liczba {userNumber} znaleziona na indeksie {i}");
                 }
             }
 
-            return false;
+            if (found == false)
+            {
+                MainMenu.ColorizeString($"Liczba {userNumber} nie znaleziona");
+            };
+            
+           
+            Display();
         }
 
-        public void PrintHeap()
+        public void Display()
         {
             bool firstTail = true;
-            PrintHeap(0, "", true, firstTail);
-            Menu();    
+            Display(0, "", true, firstTail);
+            sterta = new int[count];
+            size = 0;
+            MainMenu.ColorizeString("Dane wyzerowane, by wyswietlić strukturę kolejny raz, nalezy ponowić którkolwiek operację", ConsoleColor.Red);
+            Menu();
         }
 
-        private void PrintHeap(int index, string prefix, bool isTail, bool firsttail)
+        private void Display(int index, string prefix, bool isTail, bool firsttail)
         {
-            Console.WriteLine(prefix + (firsttail? "":(isTail ? "└── " : "├── ")) + heap[index]);
+            Console.WriteLine(prefix + (firsttail? "":(isTail ? "└── " : "├── ")) + sterta[index]+$" ( indeks {index})");
 
             int leftChild = LeftChild(index);
             int rightChild = RightChild(index);
 
             if (leftChild < size)
             {
-                PrintHeap(leftChild, prefix + (isTail ? "    " : "│   "), rightChild >= size, false);
+                Display(leftChild, prefix + (isTail ? "    " : "│   "), rightChild >= size, false);
             }
 
             if (rightChild < size)
             {
-                PrintHeap(rightChild, prefix + (isTail ? "    " : "│   "), true, false);
+                Display(rightChild, prefix + (isTail ? "    " : "│   "), true, false);
             }
         }
 
