@@ -17,7 +17,7 @@ namespace StudyOfTheEffectivenessOperations
             Console.WriteLine("\r\nWybierz strukturę, na której chcesz przeprowadzić eksperymenty:\r\n");
             string menu = "[1] Tablica\r\n";
                     menu += "[2] Lista dwukierunkowa\r\n";
-                    menu += "[3] Kopiec binanry-\r\n";
+                    menu += "[3] Kopiec binanry-typu maks\r\n";
                     menu += "[4] Drzewo czerwono-czarne\r\n";
                     menu += "--------------------------\r\n";
                     menu += "[5] Zmiana zestawu danych\r\n";
@@ -58,7 +58,7 @@ namespace StudyOfTheEffectivenessOperations
         public static void ColorizeString(string Text, ConsoleColor setColor = ConsoleColor.Green)
         {
             Console.ForegroundColor = setColor;
-            Console.Write(Text);
+            Console.WriteLine(Text);
             Console.ForegroundColor = ConsoleColor.White;
         }
     }

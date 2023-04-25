@@ -49,7 +49,6 @@
     <Compile Include="MainMenu.cs" />
     <Compile Include="Models\BlackRedTreeNodes.cs" />
     <Compile Include="Operation\ArrayOperation.cs" />
-    <Compile Include="Operation\AVLTreeOperation.cs" />
     <Compile Include="Operation\BinaryHeapWithMaxOperation.cs" />
     <Compile Include="Operation\BlackRedTreeOperation.cs" />
     <Compile Include="Operation\LinkedListOperation.cs" />

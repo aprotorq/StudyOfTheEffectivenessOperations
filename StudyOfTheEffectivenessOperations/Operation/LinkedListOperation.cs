@@ -39,9 +39,9 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
             menu += "(za każdym razem zostanie wygenerowany nowy zestaw danych) a czas wykonania uśredniony \r\n ";
 
             menu += $" ---------------------------\r\n";
-            menu += $"[1] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku listy do {VariablesManager.QuantityToAutoFill} istniejących \r\n ";
-            menu += $"[2] dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu listy do {VariablesManager.QuantityToAutoFill} istniejących \r\n ";
-            menu += $"[3] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {VariablesManager.QuantityToAutoFill} istniejących \r\n ";
+            menu += $"[1] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku listy do {count} istniejących (nie dla manualnego)\r\n ";
+            menu += $"[2] dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu listy do {count} istniejących (nie dla manualnego) \r\n ";
+            menu += $"[3] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {count} istniejących (nie dla manualnego) \r\n ";
             menu += $"[4] usuwanie {NumberCountToRemove} z początku listy {NumberCount} elementowej \r\n ";
             menu += $"[5] usuwanie {NumberCountToRemove} z końcu listy {NumberCount} elementowej \r\n ";
             menu += $"[6] usuwanie {NumberCountToRemove} z losowo wybranego miejsca listy {NumberCount} elementowej \r\n ";
@@ -58,15 +58,15 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
             {
                 
                 case "1":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku listy do {VariablesManager.QuantityToAutoFill} istniejących\r\n");
+                    MainMenu.ColorizeString($"dodwania 1 losowej liczby w przedziele 0- 1000 000 (x100) na początku listy do {count} istniejących\r\n");
                     AddToBegining();
                     break;
                 case "2":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu listy do {VariablesManager.QuantityToAutoFill} istniejących\r\n");
+                    MainMenu.ColorizeString($"dodwania 1 losowej liczby w przedziale 0- 1000 000 (x100) na końcu listy do {count} istniejących\r\n");
                     AddToEnding();
                     break;
                 case "3":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {VariablesManager.QuantityToAutoFill} istniejących\r\n");
+                    MainMenu.ColorizeString($"dodwania 1 losowej liczby w przedziele 0- 1000 000 (x100) w losowym miejscu listy do {count} istniejących\r\n");
                     AddToRandom();
                     break;
                 case "4":
@@ -119,7 +119,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                     sw.Restart();
                     for (int j = 0; j < count; j++)
                     {
-                        lista.AddFirst(rnd.Next());
+                        lista.AddFirst(rnd.Next(maxValue));
                     } 
                     sw.Stop();
                 }
@@ -151,7 +151,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                     sw.Restart();
                     for (int j = 0; j < count; j++)
                     {
-                        lista.AddLast(rnd.Next());
+                        lista.AddLast(rnd.Next(maxValue));
                     }
                     sw.Stop();
                 }
@@ -403,7 +403,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                 }
                 else
                 {
-                    poszukiwanaWartosc = rnd.Next();
+                    poszukiwanaWartosc = rnd.Next(maxValue);
                     Console.WriteLine($"\r\nWyszukuję {poszukiwanaWartosc}\r\n");
                     sw.Restart();
                     LinkedListNode<int> wezelSzukany = lista.Find(poszukiwanaWartosc);
@@ -422,16 +422,23 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                 times[i] = sw.Elapsed.TotalMilliseconds;
              
             }
+
             Console.WriteLine($"Czas najmniejszy: {times.Min()} ms, czas najwiekszy: {times.Max()} ms, czas średni: {times.Average()} ms");
             Console.WriteLine("Koniec zadania 7.");
             Menu();
         }
         public void Display()
         {
-            
-            foreach (int element in lista)
+            if (lista.Count() == 0)
             {
-                Console.Write(element + ", ");
+                MainMenu.ColorizeString("Zbiór jeszcze jest pusty");
+            }
+            else
+            {
+                foreach (int element in lista)
+                {
+                    Console.Write(element + ", ");
+                }
             }
             Menu();
         }

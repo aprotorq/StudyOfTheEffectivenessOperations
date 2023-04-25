@@ -37,15 +37,15 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             string menu = $"Wybierz numer wskazujący która akcja ma zostać wykonana wykonać na tablicy. \r\n";
             menu += "Każda wybrana akcja zostanie powtórzona w pętli 100 razy \r\n ";
             menu += "(za każdym razem zostanie wygenerowany nowy zestaw danych - nie dla testu manualnego) a czas wykonania uśredniony \r\n";
-            menu += $"W przypadku operacji dodawania, najpierw zostanie wygenerowanych {VariablesManager.QuantityToAutoFill} liczb a dopiero potem eksperymenty \r\n";
+            menu += $"W przypadku operacji dodawania, najpierw zostanie wygenerowanych {count} liczb a dopiero potem eksperymenty \r\n";
             menu += $"----------------------------\r\n";
-            menu += $"[1] dodwanie {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) do {VariablesManager.QuantityToAutoFill} istniejących \r\n";
-            menu += $"[2] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku tablicy do {VariablesManager.QuantityToAutoFill} istniejących\r\n";
-            menu += $"[3] dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu tablicy do {VariablesManager.QuantityToAutoFill} istniejących\r\n";
-            menu += $"[4] dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu tablicy do {VariablesManager.QuantityToAutoFill} istniejących\r\n";
-            menu += $"[5] usuwanie {NumberCountToRemove} z początku tablicy {NumberCount} \r\n";
-            menu += $"[6] usuwanie {NumberCountToRemove} z końcu tablicy {NumberCount} \r\n";
-            menu += $"[7] usuwanie {NumberCountToRemove} z losowo wybranego miejsca tablicy {NumberCount} elementowej\r\n";
+            menu += $"[1] dodwanie 1 losowej liczby w przedziele 0- {maxValue} (x100) do {count} istniejących (nie dla testu manualnego)\r\n";
+            menu += $"[2] dodwania 1 losowej liczby w przedziele 0- {maxValue} (x100) na początku tablicy do {count} istniejących (nie dla testu manualnego)\r\n";
+            menu += $"[3] dodwania 1 losowej liczby w przedziale 0- {maxValue} (x100) na końcu tablicy do {count} istniejących (nie dla testu manualnego)\r\n";
+            menu += $"[4] dodwania 1 losowej liczby w przedziele 0- {maxValue} (x100) w losowym miejscu tablicy do {count} istniejących (nie dla testu manualnego)\r\n";
+            menu += $"[5] usuwanie {NumberCountToRemove} z początku tablicy {count} \r\n";
+            menu += $"[6] usuwanie {NumberCountToRemove} z końcu tablicy {count} \r\n";
+            menu += $"[7] usuwanie {NumberCountToRemove} z losowo wybranego miejsca tablicy {count} elementowej\r\n";
             menu += $"[8] wyszukiwanie w tablicy\r\n";
             menu += "--------------------------------------------------- \r\n";
             menu += "[9] Wyjdź do głównego menu\r\n";
@@ -59,19 +59,19 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
             {
                 case "1":
 
-                    MainMenu.ColorizeString($"dodwanie {NumberCount} losowych liczb w przedziele 0 - 1000 000(x100)\r\n");
+                    MainMenu.ColorizeString($"dodwanie 1 losowej liczby w przedziele 0 - 1000 000(x100)\r\n");
                     AddToArray();
                     break;
                 case "2":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) na początku tablicy\r\n");
+                    MainMenu.ColorizeString($"dodwania 1 losowej liczby w przedziele 0- 1000 000 (x100) na początku tablicy\r\n");
                     AddToArraAtZeroIndex();
                     break;
                 case "3":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziale 0- 1000 000 (x100) na końcu tablicy\r\n");
+                    MainMenu.ColorizeString($"dodwania 1 losowej liczby w przedziale 0- 1000 000 (x100) na końcu tablicy\r\n");
                     AddToArraAtAtTheEnd();
                     break;
                 case "4":
-                    MainMenu.ColorizeString($"dodwania {NumberCount} losowych liczb w przedziele 0- 1000 000 (x100) w losowym miejscu tablicy\r\n");
+                    MainMenu.ColorizeString($"dodwania 1 losowej liczby w przedziele 0- 1000 000 (x100) w losowym miejscu tablicy\r\n");
                     AddToArraAtAtRandomIndex();
                     break;
                 case "5":

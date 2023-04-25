@@ -8,7 +8,6 @@ namespace StudyOfTheEffectivenessOperations.Helpers
     {
         private static string _filePath;
         private static FileInfo _fileInfo;
-        private static bool _manual;
 
 
         /// <summary>
@@ -24,7 +23,7 @@ namespace StudyOfTheEffectivenessOperations.Helpers
             //sprawdzanie czy dany plik istnieje i ruchamianie operacji na nim
             Console.WriteLine($"Każda kolekcja przyjmuje zestaw początkowych danych wielkości {VariablesManager.QuantityToAutoFill} a dane z pliku (jesli będzie to test manualny) będą dodawane do danej kolekcji w trakcie eksperymentów.\r\n");
             Console.WriteLine("Czy chcesz zmienić początkowy zestaw danych? (T) tak, każda inna litera oznacza -NIE\r\n");
-            if (Console.ReadKey().Key == ConsoleKey.T)
+            if (Console.ReadLine().ToUpper().Equals("T"))
             {
                 int count;
                 Console.WriteLine("\r\nPodaj liczę początkowych danych");
