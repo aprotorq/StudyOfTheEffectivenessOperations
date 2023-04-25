@@ -690,6 +690,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.BlackRedTreeOperation
                 PrintTree(node.LeftChild, indent, false);
                 PrintTree(node.RightChild, indent, true);
             }
+            Menu();
         }
 
         // Klasa reprezentująca węzeł drzewa
