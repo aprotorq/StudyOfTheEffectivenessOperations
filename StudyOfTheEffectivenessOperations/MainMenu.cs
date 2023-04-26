@@ -15,7 +15,7 @@ namespace StudyOfTheEffectivenessOperations
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\r\nWybierz strukturę, na której chcesz przeprowadzić eksperymenty:\r\n");
-            string menu = "[1] Tablica\r\n";
+            string menu =   "[1] Tablica\r\n";
                     menu += "[2] Lista dwukierunkowa\r\n";
                     menu += "[3] Kopiec binanry-typu maks\r\n";
                     menu += "[4] Drzewo czerwono-czarne\r\n";
@@ -28,19 +28,19 @@ namespace StudyOfTheEffectivenessOperations
             switch (key)
             {
                 case "1":
-                    ColorizeString("Wybrana została Tablica\r\n");
+                    ColorizeString("Wybrana została tablica\r\n");
                     ArrayOperation arrayOp = new ArrayOperation();
                     break;
                 case "2":
-                    ColorizeString("Wybrana została Lista dwukierunkowa\r\n");
+                    ColorizeString("Wybrana została lista dwukierunkowa\r\n");
                     LinkedListOperation linked = new LinkedListOperation();
                     break;
                 case "3":
-                    ColorizeString("Wybrany został Kopiec binarny\r\n");
+                    ColorizeString("Wybrany został kopiec binarny\r\n");
                     BinaryHeapWithMaxOperation tree = new BinaryHeapWithMaxOperation();
                     break;
                 case "4":
-                    ColorizeString("Wybrane zostało Drzewo czerwono-czarne\r\n");
+                    ColorizeString("Wybrane zostało drzewo czerwono-czarne\r\n");
                     BlackRedTreeOperation blackRedTreeOp = new BlackRedTreeOperation();
                     break;
                 case "5":
