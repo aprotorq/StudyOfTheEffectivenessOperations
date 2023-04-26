@@ -127,10 +127,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 {
                     arr = new int[count];
                     arr = VariablesManager.Array;
-                    for(int j = 0; j < count; j++)
-                    {
-                        Console.Write(arr[j]+",");
-                    }
+                    //for(int j = 0; j < count; j++)
+                    //{
+                    //    Console.Write(arr[j]+",");
+                    //}
 
                     sw.Restart();
 
@@ -144,9 +144,9 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
 
                         }
                     };
-                    if (finded.Equals(string.Empty))
-                        MainMenu.ColorizeString($"\r\nLiczba {userNumber} nie istnieje w talbicy");
-                    else MainMenu.ColorizeString(finded);
+                    if (finded.Equals(string.Empty)) { }
+                        //MainMenu.ColorizeString($"\r\nLiczba {userNumber} nie istnieje w talbicy");
+                    else { }//MainMenu.ColorizeString(finded);
 
                     sw.Stop();
                 }
@@ -158,10 +158,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                         arr[j] = rnd.Next(count);
                     }
                     Console.WriteLine("Poniżej wyświetlona zostaje tablica z liczbami do testu\r\n");
-                    for (int j = 0; j < count; j++)
-                    {
-                        Console.Write(arr[j] + ",");
-                    }
+                    //for (int j = 0; j < count; j++)
+                    //{
+                    //    Console.Write(arr[j] + ",");
+                    //}
                     sw.Restart();
                     int n = arr.Length;
                     string finded = string.Empty;
@@ -173,9 +173,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
 
                         }
                     };
-                    if (finded.Equals(string.Empty))
-                        MainMenu.ColorizeString($"\r\nLiczba {userNumber} nie istnieje w talbicy");
-                    else MainMenu.ColorizeString(finded);
+                    if (finded.Equals(string.Empty)) { }
+                    //MainMenu.ColorizeString($"\r\nLiczba {userNumber} nie istnieje w talbicy");
+                    else { }
+                    //MainMenu.ColorizeString(finded);
                     sw.Stop();
                 }
 
@@ -519,7 +520,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 }
                 times[i] = sw.Elapsed.TotalMilliseconds;
 
-                Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalMilliseconds} sec");
+                Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalMilliseconds} ms");
                 arr = new int[0];// tworzymy nową pustą tablicę przed każdą iteracją
             }
             //Console.Clear();

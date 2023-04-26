@@ -246,42 +246,50 @@ namespace StudyOfTheEffectivenessOperations.Operation.BinaryTreeOperation
         /// </summary>
         /// <param name="value"></param>
         public void Find()
-        {
-            for (int j = 0; j < count - 1; j++)
+        {   int userNumber = 0;
+                Console.WriteLine($"Podaj liczbe ,którą szukasz w kolekcji (liczby sa wygenerowane randomowo)");
+                Int32.TryParse(Console.ReadLine(), out userNumber);
+            int iterations = 100;
+            for (int i = 0; i < iterations; i++)
             {
-
-                sterta[size] = rnd.Next(maxValue);
-                size++;
-
-                int index = size - 1;
-                while (index != 0 && sterta[index] > sterta[Parent(index)])
+                sterta = new int[count];
+                size = 0;
+                for (int j = 0; j < count - j; j++)
                 {
-                    ChangePlace(index, Parent(index));
-                    index = Parent(index);
+
+                    sterta[size] = rnd.Next(maxValue);
+                    size++;
+
+                    int index = size - 1;
+                    while (index != 0 && sterta[index] > sterta[Parent(index)])
+                    {
+                        ChangePlace(index, Parent(index));
+                        index = Parent(index);
+                    }
+
                 }
-
-            }
-            bool found = false;
-            int userNumber = 0;
-            Console.WriteLine($"Podaj liczbe ,którą szukasz w kolekcji (liczby sa wygenerowane randomowo)");
-            Int32.TryParse(Console.ReadLine(), out userNumber);
-
-            for (int i = 0; i < size; i++)
-            {
-                if (sterta[i] == userNumber)
+                
+                bool found = false;
+                
+                sw.Restart();
+                for (int k = 0; k < size; k++)
                 {
-                    found = true;
-                    MainMenu.ColorizeString($"Liczba {userNumber} znaleziona na indeksie {i}");
+                    if (sterta[k] == userNumber)
+                    {
+                        found = true;
+                        //MainMenu.ColorizeString($"Liczba {userNumber} znaleziona na indeksie {k}");
+                    }
                 }
+                sw.Stop();
+                if (found == false)
+                {
+                   // MainMenu.ColorizeString($"Liczba {userNumber} nie znaleziona");
+                };
+                times[i] = sw.Elapsed.TotalMilliseconds * 1000000;
             }
-
-            if (found == false)
-            {
-                MainMenu.ColorizeString($"Liczba {userNumber} nie znaleziona");
-            };
-            
-           
-            Display();
+            Console.WriteLine($"Czas najmniejszy: {times.Min()} ms, czas najwiekszy: {times.Max()} ms, czas średni: {times.Average()} ms");
+            Console.WriteLine("Koniec zadania 1.");
+            Menu();
         }
 
         public void Display()

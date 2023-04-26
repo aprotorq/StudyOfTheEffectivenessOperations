@@ -257,9 +257,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                     
                 }
                 times[i] = sw.Elapsed.TotalMilliseconds * 1000000;
-                MainMenu.ColorizeString($"Czas najmniejszy: {times.Min()} ns, czas najwiekszy: {times.Max() } ns, czas średni: {times.Average() } ns",ConsoleColor.DarkYellow);
-                Console.WriteLine("\r\nKoniec zadania 4.");
+                
             }
+            MainMenu.ColorizeString($"Czas najmniejszy: {times.Min()} ns, czas najwiekszy: {times.Max() } ns, czas średni: {times.Average() } ns",ConsoleColor.DarkYellow);
+                Console.WriteLine("\r\nKoniec zadania 4.");
             Menu();
 
             //Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalSeconds} ms");
@@ -294,9 +295,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
 
                 }
                 times[i] = sw.Elapsed.TotalMilliseconds * 1000000;
-                MainMenu.ColorizeString($"Czas najmniejszy: {times.Min()} ns, czas najwiekszy: {times.Max()} ns, czas średni: {times.Average()} ns", ConsoleColor.DarkYellow);
-                Console.WriteLine("\r\nKoniec zadania 5.");
+                
             }
+            MainMenu.ColorizeString($"Czas najmniejszy: {times.Min()} ns, czas najwiekszy: {times.Max()} ns, czas średni: {times.Average()} ns", ConsoleColor.DarkYellow);
+                Console.WriteLine("\r\nKoniec zadania 5.");
             Menu();
         }
         public void RemoveFromRandom()
@@ -375,12 +377,12 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
             if (VariablesManager.IsManual)
             {
                 for (int i = 0; i < count; i++) { Console.Write(VariablesManager.Array[i] + ","); }
-                Console.WriteLine("\r\nPodaj którą chcesz wyszukać");
+                Console.WriteLine("\r\nPodaj wartość którą chcesz wyszukać");
                 Int32.TryParse(Console.ReadLine(), out poszukiwanaWartosc);
             }
             else
             {
-                Console.WriteLine("\r\nPodaj którą chcesz wyszukać");
+                Console.WriteLine("\r\nPodaj wartość którą chcesz wyszukać");
                 Int32.TryParse(Console.ReadLine(), out poszukiwanaWartosc);
             }
             for (int i = 0; i < iterations; i++)
@@ -391,15 +393,7 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                     LinkedListNode<int> wezelSzukany = lista.Find(poszukiwanaWartosc);
                     sw.Stop();
 
-                    if (wezelSzukany != null)
-                    {
-                        Console.WriteLine($"Znaleziono element o wartości {wezelSzukany.Value}");
-
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Nie znaleziono elementu o wartości {poszukiwanaWartosc}" );
-                    }
+                    
                 }
                 else
                 {
@@ -409,15 +403,6 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                     LinkedListNode<int> wezelSzukany = lista.Find(poszukiwanaWartosc);
                     sw.Stop();
 
-                    if (wezelSzukany != null)
-                    {
-                        Console.WriteLine($"Znaleziono element o wartości {wezelSzukany.Value}");
-
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Nie znaleziono elementu o wartości {poszukiwanaWartosc}");
-                    }
                 }
                 times[i] = sw.Elapsed.TotalMilliseconds;
              

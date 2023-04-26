@@ -378,7 +378,12 @@ namespace StudyOfTheEffectivenessOperations.Operation.BlackRedTreeOperation
                         MainMenu.ColorizeString("Taka liczba istnieje", ConsoleColor.Green);
                     }
                 }
+                times[i] = sw.Elapsed.TotalMilliseconds;
             }
+            Console.Clear();
+            Console.WriteLine($"Czas najmniejszy: {times.Min()}, czas najwiekszy: {times.Max()}, czas średni: {times.Average()} ms");
+            Console.WriteLine("Koniec zadania 3.");
+            Menu();
         }
         // Metoda wyszukująca węzeł z wartością
         private Node FindNode(int value)
@@ -581,8 +586,12 @@ namespace StudyOfTheEffectivenessOperations.Operation.BlackRedTreeOperation
                         FixTreeAfterDeletion(child.LeftChild, parent);
                     }
                 }
+                times[i] = sw.Elapsed.TotalMilliseconds;
             }
-            PrintTree();
+            Console.Clear();
+            Console.WriteLine($"Czas najmniejszy: {times.Min()}, czas najwiekszy: {times.Max()}, czas średni: {times.Average()} ms");
+            Console.WriteLine("Koniec zadania 3.");
+            Menu();
         }
 
         // Metoda naprawiająca drzewo po usunięciu węzła
