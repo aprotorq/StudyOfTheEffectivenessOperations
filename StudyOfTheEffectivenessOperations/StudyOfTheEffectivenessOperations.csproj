@@ -52,7 +52,6 @@
     <Compile Include="Operation\BinaryHeapWithMaxOperation.cs" />
     <Compile Include="Operation\BlackRedTreeOperation.cs" />
     <Compile Include="Operation\LinkedListOperation.cs" />
-    <Compile Include="Operation\MaxHeap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,10 +1,8 @@
 ﻿// Klasa reprezentująca drzewo czerwono-czarne
 using StudyOfTheEffectivenessOperations.Helpers;
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Xml.Linq;
 namespace StudyOfTheEffectivenessOperations.Operation.BlackRedTreeOperation
 {
     public class BlackRedTreeOperation

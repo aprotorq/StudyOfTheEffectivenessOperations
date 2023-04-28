@@ -1,10 +1,8 @@
 ﻿using StudyOfTheEffectivenessOperations.Helpers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 
 namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
 {
@@ -124,9 +122,9 @@ namespace StudyOfTheEffectivenessOperations.Operation.LinkedListOperation
                     sw.Stop();
                 }
                 times[i] = sw.Elapsed.TotalMilliseconds;
-                Console.WriteLine($"Czas najmniejszy: {times.Min()} ms, czas najwiekszy: {times.Max()} ms, czas średni: {times.Average()} ms");
+                
+            }Console.WriteLine($"Czas najmniejszy: {times.Min()} ms, czas najwiekszy: {times.Max()} ms, czas średni: {times.Average()} ms");
                 Console.WriteLine("Koniec zadania 1.");
-            }
             Menu();
         }
           
