@@ -569,10 +569,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                 }
 
                 times[i] = sw.Elapsed.TotalMilliseconds * 1000000;
-                Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalMilliseconds * 1000000} ns");
+                Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalMilliseconds * 1000000} micros");
                 arr = new int[0];// tworzymy nową pustą tablicę przed każdą iteracją
             }
-            Console.WriteLine($"Czas najmniejszy: {times.Min()} ns, czas najwiekszy: {times.Max()} ns, czas średni: {times.Average()} ns");
+            Console.WriteLine($"Czas najmniejszy: {times.Min()} micros, czas najwiekszy: {times.Max()} micros, czas średni: {times.Average()} micros");
             Console.WriteLine("Koniec zadania 6.");
             Menu();
 
@@ -647,10 +647,10 @@ namespace StudyOfTheEffectivenessOperations.Operation.ArrayOperation
                     Array.Resize(ref arr, arr.Length - 1); // zmniejszenie rozmiaru tablicy
                 }
                 times[i] = sw.Elapsed.TotalMilliseconds * 1000000;
-                Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalMilliseconds * 1000000} ns");
+                Console.WriteLine($"Iteracja {i + 1}: {sw.Elapsed.TotalMilliseconds * 1000000} micros");
                 arr = new int[0];// tworzymy nową pustą tablicę przed każdą iteracją
             }
-            Console.WriteLine($"Czas najmniejszy: {times.Min()} ns, czas najwiekszy: {times.Max()} ns, czas średni: {times.Average()} ns");
+            Console.WriteLine($"Czas najmniejszy: {times.Min()} micros, czas najwiekszy: {times.Max()} micros, czas średni: {times.Average()} micros");
             Console.WriteLine("Koniec zadania 7.");
             Menu();
 
